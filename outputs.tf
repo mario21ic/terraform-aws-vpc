@@ -6,10 +6,10 @@ output "vpc_cidr" {
   value = "${aws_vpc.vpc.cidr_block}"
 }
 
-output "bm_vpc_subnet_a_id" {
-  value = "${aws_subnet.sn_a.id}"
+output "bm_vpc_subnet_1_id" {
+  value = "${aws_subnet.sn_1.id}"
 }
 
-output "bm_vpc_subnet_b_id" {
-  value = "${aws_subnet.sn_b.id}"
+output "bm_vpc_subnet_2_id" {
+  value = "${aws_subnet.sn_2.id}"
 }

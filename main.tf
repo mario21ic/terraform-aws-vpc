@@ -85,23 +85,23 @@ resource "aws_default_network_acl" "def_nacl" {
 
 # vpc subnets
 
-resource "aws_subnet" "sn_a" {
+resource "aws_subnet" "sn_1" {
   vpc_id                  = "${aws_vpc.vpc.id}"
-  cidr_block              = "${var.cidr_subnet_a}"
+  cidr_block              = "${var.cidr_subnet_1}"
   availability_zone       = "${var.region}a"
   map_public_ip_on_launch = true
 
   tags {
-    Name        = "sn_a"
-    Class       = "sn_a"
+    Name        = "sn_1"
+    Class       = "sn_1"
     Enviroment  = "${var.environment}"
-    Description = "Subnet A"
+    Description = "Subnet 1"
   }
 }
 
-resource "aws_subnet" "sn_b" {
+resource "aws_subnet" "sn_2" {
   vpc_id                  = "${aws_vpc.vpc.id}"
-  cidr_block              = "${var.cidr_subnet_b}"
+  cidr_block              = "${var.cidr_subnet_2}"
   availability_zone       = "${var.region}b"
   map_public_ip_on_launch = true
 
@@ -109,6 +109,6 @@ resource "aws_subnet" "sn_b" {
     Name        = "sn_b"
     Class       = "sn_b"
     Enviroment  = "${var.environment}"
-    Description = "Subnet B"
+    Description = "Subnet 2"
   }
 }
