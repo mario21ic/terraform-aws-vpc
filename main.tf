@@ -106,8 +106,8 @@ resource "aws_subnet" "sn_2" {
   map_public_ip_on_launch = true
 
   tags {
-    Name        = "sn_b"
-    Class       = "sn_b"
+    Name        = "sn_2"
+    Class       = "sn_2"
     Enviroment  = "${var.environment}"
     Description = "Subnet 2"
   }
