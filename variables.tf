@@ -23,8 +23,17 @@ variable "cidr_subnet_1" {
   #default = "10.0.1.0/24"
 }
 
+variable "subnet_1_availability_zone" {
+  description = "Subnet Availability Zone"
+  #default = "10.0.1.0/24"
+}
+
 variable "cidr_subnet_2" {
   description = "cidr for subnet b"
   #default = "10.0.2.0/24"
 }
 
+variable "subnet_2_availability_zone" {
+  description = "Subnet Availability Zone"
+  #default = "10.0.1.0/24"
+}

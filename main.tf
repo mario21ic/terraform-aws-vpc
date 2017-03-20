@@ -88,7 +88,7 @@ resource "aws_default_network_acl" "def_nacl" {
 resource "aws_subnet" "sn_1" {
   vpc_id                  = "${aws_vpc.vpc.id}"
   cidr_block              = "${var.cidr_subnet_1}"
-  availability_zone       = "${var.region}a"
+  availability_zone       = "${var.subnet_1_availability_zone}"
   map_public_ip_on_launch = true
 
   tags {
@@ -102,7 +102,7 @@ resource "aws_subnet" "sn_1" {
 resource "aws_subnet" "sn_2" {
   vpc_id                  = "${aws_vpc.vpc.id}"
   cidr_block              = "${var.cidr_subnet_2}"
-  availability_zone       = "${var.region}b"
+  availability_zone       = "${var.subnet_2_availability_zone}"
   map_public_ip_on_launch = true
 
   tags {
