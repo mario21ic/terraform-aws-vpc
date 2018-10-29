@@ -1,39 +1,27 @@
-variable "name" {
-  description = "vpc name"
-  #default     = "ca-central-1"
-}
-
 variable "region" {
   description = "aws region"
-  #default     = "ca-central-1"
 }
 
-variable "environment" {
-  description = "component environment"
-  #default = "development"
+variable "env" {
+  description = "Environment name"
 }
 
-variable "cidr" {
+variable "vpc_cidr" {
   description = "cidr for the vpc"
-  #default = "10.0.0.0/16"
 }
 
-variable "cidr_subnet_1" {
-  description = "cidr for subnet a"
-  #default = "10.0.1.0/24"
+variable "gateway_public_ip" {
+  description = "Public ip to gateway"
 }
 
-variable "subnet_1_availability_zone" {
-  description = "Subnet Availability Zone"
-  #default = "10.0.1.0/24"
+variable "subnet_publics" {
+  type = "list"
+  default = []
+  description = "List of subnets availability zones"
 }
 
-variable "cidr_subnet_2" {
-  description = "cidr for subnet b"
-  #default = "10.0.2.0/24"
-}
-
-variable "subnet_2_availability_zone" {
-  description = "Subnet Availability Zone"
-  #default = "10.0.1.0/24"
+variable "subnet_privates" {
+  type = "list"
+  default = []
+  description = "List of subnets availability zones"
 }

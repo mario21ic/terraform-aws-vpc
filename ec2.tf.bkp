@@ -1,0 +1,92 @@
+resource "aws_instance" "ec2_backend_public" {
+  ami                    = "ami-70edb016"
+  instance_type          = "t2.micro"
+  key_name               = "yarkan_ireland"
+  vpc_security_group_ids = ["${aws_security_group.sg_backend_public.id}"]
+  availability_zone      = "${var.sn_public_1_az}"
+
+  subnet_id                   = "${aws_subnet.sn_public_1.id}"
+  associate_public_ip_address = true
+
+  tags {
+    Name        = "ec2_backend_public"
+    Class       = "ec2_backend_public"
+    Description = "Server application"
+  }
+}
+
+resource "aws_security_group" "sg_backend_public" {
+  name        = "sg_backend_public"
+  description = "Server application inbound and outbound"
+  vpc_id      = "${aws_vpc.vpc.id}"
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["181.224.236.154/32"]
+  }
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags {
+    Name        = "sg_backend_public"
+    Class       = "sg_backend_public"
+    Description = "Server application security group"
+  }
+}
+
+/* Private */
+resource "aws_instance" "ec2_backend_private" {
+  ami                    = "ami-70edb016"
+  instance_type          = "t2.micro"
+  key_name               = "yarkan_ireland"
+  vpc_security_group_ids = ["${aws_security_group.sg_backend_private.id}"]
+  availability_zone      = "${var.sn_private_1_az}"
+
+  subnet_id                   = "${aws_subnet.sn_private_1.id}"
+
+  tags {
+    Name        = "ec2_backend_private"
+    Class       = "ec2_backend_private"
+    Description = "Bookingmotor web application"
+  }
+}
+
+resource "aws_security_group" "sg_backend_private" {
+  name        = "sg_backend_private"
+  description = "Server application inbound and outbound"
+  vpc_id      = "${aws_vpc.vpc.id}"
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    security_groups = ["${aws_security_group.sg_backend_public.id}"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags {
+    Name        = "sg_backend_private"
+    Class       = "sg_backend_private"
+    Description = "Server application security group"
+  }
+}

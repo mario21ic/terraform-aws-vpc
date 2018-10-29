@@ -1,15 +1,22 @@
-output "vpc_id" {
+output "id" {
   value = "${aws_vpc.vpc.id}"
 }
 
-output "vpc_cidr" {
+output "cidr" {
   value = "${aws_vpc.vpc.cidr_block}"
 }
 
-output "bm_vpc_subnet_1_id" {
-  value = "${aws_subnet.sn_1.id}"
+output "public_subnet_ids" {
+  value = "${aws_subnet.sn_publics.*.id}"
+}
+output "private_subnet_ids" {
+  value = "${aws_subnet.sn_privates.*.id}"
 }
 
-output "bm_vpc_subnet_2_id" {
-  value = "${aws_subnet.sn_2.id}"
+output "route_table_public" {
+  value = "${aws_route_table.rt_public.id}"
+}
+
+output "route_table_private" {
+  value = "${aws_route_table.rt_private.id}"
 }
