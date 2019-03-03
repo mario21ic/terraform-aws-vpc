@@ -17,3 +17,5 @@ Run integration tests
 ```
 $ kitchen test
 ```
+
+Note: to modify the configuration use the file .kitchen.yml

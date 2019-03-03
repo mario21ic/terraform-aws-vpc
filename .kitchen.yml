@@ -5,8 +5,6 @@ driver:
 
 provisioner:
   name: "terraform"
-  variable_files:
-    - "examples/test_fixtures/terraform.tfvars"
 
 platforms:
   - name: "aws"
