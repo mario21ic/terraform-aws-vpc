@@ -22,17 +22,19 @@ resource "aws_route_table_association" "rt_association_publics" {
 }
 
 /* Private */
-//resource "aws_eip" "eip_nat_gw" {
-//  vpc = true
-//}
-data "aws_eip" "booking" {
-  public_ip = "${var.gateway_public_ip}"
+resource "aws_eip" "nat" {
+  vpc = true
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "aws_nat_gateway" "my_nat_gw" {
-  allocation_id = "${data.aws_eip.booking.id}"
+  allocation_id = "${aws_eip.nat.id}"
   subnet_id     = "${element(aws_subnet.sn_publics.*.id, 0)}"
 }
+
 
 resource "aws_route_table" "rt_private" {
   vpc_id = "${aws_vpc.vpc.id}"

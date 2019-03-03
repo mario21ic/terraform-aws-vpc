@@ -1,8 +1,7 @@
-region = "us-west-2"
+region = "us-east-2"
 
 env = "draft"
 vpc_cidr = "10.0.0.0/16"
-gateway_public_ip = "52.39.21.86"
 
 subnet_publics = [
   {

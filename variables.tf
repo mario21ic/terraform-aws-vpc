@@ -10,10 +10,6 @@ variable "vpc_cidr" {
   description = "cidr for the vpc"
 }
 
-variable "gateway_public_ip" {
-  description = "Public ip to gateway"
-}
-
 variable "subnet_publics" {
   type = "list"
   default = []
