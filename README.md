@@ -19,3 +19,16 @@ $ kitchen test
 ```
 
 Note: to modify the configuration use the file .kitchen.yml
+
+Optional: execute test step by step
+```
+$ kitchen create
+
+$ kitchen converge
+
+$ kitchen setup
+
+$ kitchen verify
+
+$ kitchen destroy
+```
