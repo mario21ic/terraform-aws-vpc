@@ -11,13 +11,20 @@ variable "vpc_cidr" {
 }
 
 variable "subnet_publics" {
-  type = "list"
-  default = []
+  type = list(object({
+    zone = string
+    cidr = string
+  }))
+  default     = []
   description = "List of subnets availability zones"
 }
 
 variable "subnet_privates" {
-  type = "list"
-  default = []
+  type = list(object({
+    zone = string
+    cidr = string
+  }))
+  default     = []
   description = "List of subnets availability zones"
 }
+

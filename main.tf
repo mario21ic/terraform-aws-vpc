@@ -1,42 +1,38 @@
-provider "aws" {
-  region = "${var.region}"
-}
-
 resource "aws_vpc" "vpc" {
-  cidr_block           = "${var.vpc_cidr}"
+  cidr_block           = var.vpc_cidr
   instance_tenancy     = "default"
   enable_dns_support   = true
   enable_dns_hostnames = true
 
-  tags {
+  tags = {
     Name        = "${var.env}-vpc"
-    Env         = "${var.env}"
+    Env         = var.env
     Description = "VPC ${var.env}"
   }
 }
 
 resource "aws_internet_gateway" "my_igw" {
-  vpc_id = "${aws_vpc.vpc.id}"
+  vpc_id = aws_vpc.vpc.id
 
-  tags {
+  tags = {
     Name        = "${var.env}-ig"
-    Env         = "${var.env}"
+    Env         = var.env
     Description = "Internet gateway"
   }
 }
 
 resource "aws_default_security_group" "def_sg" {
-  vpc_id = "${aws_vpc.vpc.id}"
+  vpc_id = aws_vpc.vpc.id
 
-  tags {
+  tags = {
     Name        = "${var.env}-sg"
-    Env         = "${var.env}"
+    Env         = var.env
     Description = "VPC security group"
   }
 }
 
 resource "aws_default_network_acl" "def_nacl" {
-  default_network_acl_id = "${aws_vpc.vpc.default_network_acl_id}"
+  default_network_acl_id = aws_vpc.vpc.default_network_acl_id
 
   ingress {
     protocol   = -1
@@ -56,9 +52,10 @@ resource "aws_default_network_acl" "def_nacl" {
     to_port    = 0
   }
 
-  tags {
+  tags = {
     Name        = "${var.env}-nacl"
-    Env         = "${var.env}"
+    Env         = var.env
     Description = "Default network ACL"
   }
 }
+
