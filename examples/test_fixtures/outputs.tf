@@ -7,7 +7,7 @@ Outputs used for tests
 //}
 
 output "vpc_id" {
-  value = "${module.vpc.id}"
+  value = module.vpc.id
 }
 
 //output "sg_id" {
@@ -19,5 +19,6 @@ output "vpc_id" {
 //}
 
 output "region" {
-  value = "${var.region}"
+  value = var.region
 }
+

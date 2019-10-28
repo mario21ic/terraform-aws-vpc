@@ -7,6 +7,7 @@ puts "directorio actual #{Dir.getwd}"
 # should strive to randomize the region for more robust testing
 file = File.open(Dir.getwd + "/examples/test_fixtures/main.tf")
 example_main = HCL::Checker.parse(file.read)
+puts "example_main  #{example_main}"
 env_name = example_main['module']['vpc']['env']
 vpc_name = env_name + "-vpc"
 rt_public_name = env_name + "-rt-public"
