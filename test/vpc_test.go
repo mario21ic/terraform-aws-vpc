@@ -3,6 +3,8 @@ package test
 import (
 	"testing"
 
+	"github.com/gruntwork-io/terratest/modules/aws"
+
 	"github.com/gruntwork-io/terratest/modules/terraform"
 	"github.com/stretchr/testify/assert"
 )
@@ -17,6 +19,10 @@ func TestTerraformHelloWorldExample(t *testing.T) {
 
 	terraform.InitAndApply(t, terraformOptions)
 
-	output := terraform.Output(t, terraformOptions, "hello_world")
-	assert.Equal(t, "Hello, World xD!", output)
+	vpc_id := terraform.Output(t, terraformOptions, "vpc_id")
+
+	vpc := aws.GetVpcById(t, vpc_id, "us-east-2")
+	assert.Equal(t, vpc.Id, vpc_id)
+	assert.Equal(t, "draft-vpc", vpc.Name)
+	assert.Equal(t, 6, len(vpc.Subnets))
 }

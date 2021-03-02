@@ -1,16 +1,16 @@
-output "id" {
+output "vpc_id" {
   value = aws_vpc.vpc.id
 }
 
-output "cidr" {
+output "vpc_cidr" {
   value = aws_vpc.vpc.cidr_block
 }
 
-output "public_subnet_ids" {
+output "subnet_public_ids" {
   value = aws_subnet.sn_publics.*.id
 }
 
-output "private_subnet_ids" {
+output "subnet_private_ids" {
   value = aws_subnet.sn_privates.*.id
 }
 

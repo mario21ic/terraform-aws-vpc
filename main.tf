@@ -11,16 +11,6 @@ resource "aws_vpc" "vpc" {
   }
 }
 
-resource "aws_internet_gateway" "my_igw" {
-  vpc_id = aws_vpc.vpc.id
-
-  tags = {
-    Name        = "${var.env}-ig"
-    Env         = var.env
-    Description = "Internet gateway"
-  }
-}
-
 resource "aws_default_security_group" "def_sg" {
   vpc_id = aws_vpc.vpc.id
 
